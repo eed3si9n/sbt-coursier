@@ -24,6 +24,7 @@ inThisBuild(List(
       case v   => v
     }
   },
+  scalaVersion := scala3,
   version := "2.0.0-alpha1-SNAPSHOT",
 ))
 
@@ -297,10 +298,6 @@ lazy val `sbt-coursier-root` = project
   .aggregate(
     `lm-coursier`,
     `lm-coursier-shaded`,
-    `sbt-coursier`,
-    `sbt-coursier-shared`,
-    `sbt-coursier-shared-shaded`,
-    `sbt-lm-coursier`
   )
   .settings(
     shared,
