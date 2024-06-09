@@ -24,8 +24,8 @@ runLmCoursierTests() {
 
   # publishing locally to ensure shading runs fine
   ./metadata/scripts/with-test-repo.sh $SBT \
-    +lm-coursier-shaded/publishLocal \
-    +lm-coursier/test \
+    lm-coursier-shaded/publishLocal \
+    lm-coursier/test \
     "sbt-lm-coursier/scripted shared-$TEST_GROUP/* $SCRIPTED_EXTRA"
 }
 

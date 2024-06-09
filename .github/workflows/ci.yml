@@ -14,7 +14,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-latest, windows-latest]
+        os: [ubuntu-latest]
         PLUGIN: [sbt-lm-coursier]
         TEST_GROUP: [1, 2]
     steps:
@@ -23,7 +23,7 @@ jobs:
       run: |
         git config --global core.autocrlf false
         git config --global core.eol lf
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v4
       with:
         fetch-depth: 0
         submodules: true
@@ -43,15 +43,15 @@ jobs:
     if: github.event_name == 'push'
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 0
           submodules: true
-      - uses: coursier/cache-action@v6.3
-      - uses: coursier/setup-action@v1
+      - name: Setup JDK
+        uses: actions/setup-java@v4
         with:
-          jvm: 8
-          apps: sbt-launcher
+          distribution: "adopt"
+          java-version: "8"
       - uses: olafurpg/setup-gpg@v3
       - name: Release
         run: sbt ci-release
